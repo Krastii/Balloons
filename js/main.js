@@ -1,6 +1,6 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-
+let btn = false;
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 let ballsNumb = 0;//balls do not appear instantly, therefore a separate counter is made
@@ -24,6 +24,10 @@ let devourer = new Ball(//separate user ball declaration
 setPos = ({x,y}) =>{ 
  mouse.x = x//
  mouse.y = y 
+}
+
+setBtn =()=>{
+btn = !btn
 }
 
 setPress = ()=>{
@@ -159,7 +163,7 @@ function loop() {
     ctx.fillStyle = 'rgba(0, 0, 50, 0.6)';
     ctx.fillRect(0, 0, width, height);
     
-    while (ballsNumb < 15) {
+    while (ballsNumb < 25) {
       ballsNumb++
       setTimeout(() => {
         let ball = new Ball(
@@ -180,9 +184,10 @@ function loop() {
       balls[i].collisionDetect()
       devouring (balls[i],i)
     }
+    if(btn){
     devourer.drawDevourer()
     devourer.move()
-    point()
+    point()}
     requestAnimationFrame(loop);
 }
 
@@ -200,9 +205,10 @@ function Ball(x, y, velX, velY, color, size) {
     this.size = size;
 }
 canvas.addEventListener('mousemove',setPos)
+window.addEventListener('keydown',setBtn)
 
 let balls = []
-for(let i =0;i<10;i++){
+for(let i =0;i<15;i++){
   let ball = new Ball(
     random(20,width-20),
     random(20,height-20),

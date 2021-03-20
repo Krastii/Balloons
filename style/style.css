@@ -23,3 +23,14 @@ html, body {
     color: transparent;
     text-shadow: 0 0 4px white;
   }
+
+  /* .btn{
+    position: absolute;
+    top: 2%;
+    margin: 0;
+    border: 0;
+    right: 2%;
+    width: 30px;
+    height: 30px;
+    background-color: brown;
+  } */
