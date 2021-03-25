@@ -1,6 +1,7 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 let btn = false;
+let inscription = true;
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 let ballsNumb = 0;//balls do not appear instantly, therefore a separate counter is made
@@ -28,6 +29,7 @@ setPos = ({x,y}) =>{
 
 setBtn =()=>{
 btn = !btn
+inscription = false
 }
 
 setPress = ()=>{
@@ -53,6 +55,14 @@ point = ()=>{//
   ctx.strokeStyle = 'red';
   ctx.font = "italic 30pt Arial";
   ctx.strokeText(counter, width-80, height-30);
+  ctx.fill();
+}
+
+inscriptionDraw =()=>{
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(100,150,185,0.3)';
+  ctx.font = "italic 25pt Arial";
+  ctx.strokeText('Press any button to activate game mode and press again to deactivate', width/2*0.2, height/2*0.2);
   ctx.fill();
 }
 
@@ -188,6 +198,9 @@ function loop() {
     devourer.drawDevourer()
     devourer.move()
     point()}
+    if(inscription===true){
+      inscriptionDraw()
+    }
     requestAnimationFrame(loop);
 }
 
